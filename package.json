@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "license": "MIT",
-  "author": "",
+  "author": "Glenn Lugod",
   "type": "module",
   "main": "./dist/main.js",
   "scripts": {

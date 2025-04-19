@@ -4,6 +4,11 @@
 
 YAAII is a desktop AI application designed to provide a comprehensive, locally-run AI interface. The core philosophy of this project is to enable powerful AI interactions entirely on the user's local machine, ensuring privacy, performance, and full control.
 
+## Project Video
+
+Check out the detailed walkthrough of how this application was built in our YouTube video:
+[How to Build a Local AI Desktop Application](https://youtu.be/8K5pxVfcMlk)
+
 ## Key Features
 
 - 🖥️ Desktop Application: Built with Electron for cross-platform compatibility
@@ -36,6 +41,8 @@ YAAII is a desktop AI application designed to provide a comprehensive, locally-r
 1. Clone the repository
 2. Install dependencies:
    ```bash
+   npm install
+   cd frontend
    npm install
    ```
 

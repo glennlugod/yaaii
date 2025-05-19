@@ -1,8 +1,8 @@
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import { ConversationState, createConversationGraph } from "./conversationGraph.js";
 import { LLMConfig, ServerDependencies } from "./llmConfig.js";
+import { MongoClient, MongoServerSelectionError } from "mongodb";
 
-import { MongoClient } from "mongodb";
 import { MongoDBSaver } from "@langchain/langgraph-checkpoint-mongodb";
 import { QdrantMemoryStore } from "./QdrantMemoryStore.js";
 import { RunnableConfig } from "@langchain/core/runnables";
@@ -99,6 +99,13 @@ export const callGraph = async (params: CallGraphParams): Promise<CallGraphResul
     };
   } catch (error) {
     console.error('Error processing conversation:', error);
+    if (error instanceof MongoServerSelectionError) {
+      return {
+        success: false,
+        threadId: threadId,
+        error: error.message
+      }
+    }
     
     return {
       success: false,

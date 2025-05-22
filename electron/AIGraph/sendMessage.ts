@@ -28,6 +28,10 @@ export interface CallGraphResult {
   error?: string;
 }
 
+function hasMessageField(obj: unknown): obj is { message: unknown } {
+  return typeof obj === 'object' && obj !== null && 'message' in obj;
+}
+
 export const callGraph = async (params: CallGraphParams): Promise<CallGraphResult> => {
   const {threadId, systemMessage, inputText, llmConfig, embeddingConfig, servers} = params;
 
@@ -110,7 +114,7 @@ export const callGraph = async (params: CallGraphParams): Promise<CallGraphResul
     return {
       success: false,
       threadId: threadId,
-      error: error as string
+      error: hasMessageField(error) ? error.message as string : error as string
     }
   } finally {
     // Ensure MongoDB client is closed
